@@ -18,7 +18,7 @@ public class GameUtil
                 {
                     if (IsRandom)
                     {
-                        float random = Random.Range((float)NetInfoMgr.instance.InitData.cash_random[0], (float)NetInfoMgr.instance.InitData.cash_random[1]);
+                        float random = Random.Range((float)ToeBoldLeg.instance.DeafLine.cash_random[0], (float)ToeBoldLeg.instance.DeafLine.cash_random[1]);
                         return item.multi * (1 + random);
                     }
                     else
@@ -37,16 +37,16 @@ public class GameUtil
 
     public static double GetGoldMulti(bool IsRandom = false)
     {
-        return GetMulti(RewardType.Gold, SaveDataManager.GetDouble(CConfig.sv_CumulativeGoldCoin), NetInfoMgr.instance.InitData.gold_group, IsRandom);
+        return GetMulti(RewardType.Gold, ShedLineRancher.FarEmbryo(CAdjoin.Or_GenerationCastSlit), ToeBoldLeg.instance.DeafLine.gold_group, IsRandom);
     }
 
     public static double GetCashMulti(bool IsRandom = false)
     {
-        return GetMulti(RewardType.Cash, SaveDataManager.GetDouble(CConfig.sv_CumulativeToken), NetInfoMgr.instance.InitData.cash_group, IsRandom);
+        return GetMulti(RewardType.Cash, ShedLineRancher.FarEmbryo(CAdjoin.Or_GenerationGoods), ToeBoldLeg.instance.DeafLine.cash_group, IsRandom);
     }
     public static double GetAmazonMulti()
     {
-        return GetMulti(RewardType.Amazon, SaveDataManager.GetDouble(CConfig.sv_CumulativeAmazon), NetInfoMgr.instance.InitData.amazon_group);
+        return GetMulti(RewardType.Amazon, ShedLineRancher.FarEmbryo(CAdjoin.Or_GenerationEntity), ToeBoldLeg.instance.DeafLine.amazon_group);
     }
 }
 

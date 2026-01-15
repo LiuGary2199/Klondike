@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,8 @@ public class LittleSlot : MonoBehaviour
     RewardData Reward;
     public Button AllGetBtn;
     public Button GetBtn;
+    public SkeletonGraphic BgSpine;
+    public List<GameObject> ShowList;
 
 
     #region 老虎机
@@ -61,40 +64,53 @@ public class LittleSlot : MonoBehaviour
             Reward.num *= .1f;
             if (Reward.type == RewardType.Gold)
             {
-                GameDataManager.GetInstance().AddGold(Reward.num);
-                GamePanel.Instance.UpdateGold();
+                KickLineRancher.FarBefriend().PegCast(Reward.num);
+                KickSwear.Instance.SolderCast();
             }
             else if (Reward.type == RewardType.Cash)
             {
-                GameDataManager.GetInstance().AddCash(Reward.num);
-                GamePanel.Instance.UpdateCash();
+                KickLineRancher.FarBefriend().PegNote(Reward.num);
+                KickSwear.Instance.SolderNote();
             }
             gameObject.SetActive(false);
-            Klondike_Manager.Instance.TriggerSpecialGame();
-            PostEventScript.GetInstance().SendEvent("1015", "2", Reward.num.ToString());
+            MoldRancher.FarBefriend().Award(1, () => { Freezing_Rancher.Instance.CigarKickRid(true); });
+            WhimInuitRemove.FarBefriend().LeafInuit("1015", "2", Reward.num.ToString());
+            ADRancher.Befriend.IfCoronaPegWaist();
         });
         AllGetBtn.onClick.AddListener(() =>
         {
-            ADManager.Instance.playRewardVideo((ok) =>
+            ADRancher.Befriend.LionStarveAlder((ok) =>
             {
                 if (ok)
                 {
                     if (Reward.type == RewardType.Gold)
                     {
-                        GameDataManager.GetInstance().AddGold(Reward.num);
-                        GamePanel.Instance.UpdateGold();
+                        KickLineRancher.FarBefriend().PegCast(Reward.num);
+                        KickSwear.Instance.SolderCast();
                     }
                     else if (Reward.type == RewardType.Cash)
                     {
-                        GameDataManager.GetInstance().AddCash(Reward.num);
-                        GamePanel.Instance.UpdateCash();
+                        KickLineRancher.FarBefriend().PegNote(Reward.num);
+                        KickSwear.Instance.SolderNote();
                     }
                     gameObject.SetActive(false);
-                    Klondike_Manager.Instance.TriggerSpecialGame();
-                    PostEventScript.GetInstance().SendEvent("1015", "1", Reward.num.ToString());
+                    MoldRancher.FarBefriend().Award(1, () => { Freezing_Rancher.Instance.CigarKickRid(true); });
+                    WhimInuitRemove.FarBefriend().LeafInuit("1015", "1", Reward.num.ToString());
                 }
             }, "6");
         });
+    }
+
+    public void Show()
+    {
+        GetBtn.gameObject.SetActive(false);
+        AllGetBtn.gameObject.SetActive(false);
+
+        BgSpine.Skeleton.SetToSetupPose();
+        BgSpine.AnimationState.ClearTracks();
+        BgSpine.Update(0);
+        BgSpine.AnimationState.SetAnimation(0, "animation", false);
+        SteamshipRevolution.UrnSwearBind(ShowList);
     }
 
     public void Slot()
@@ -110,7 +126,9 @@ public class LittleSlot : MonoBehaviour
         if (IsSlotWin)
         {
             //WinIndex = GetWinIndexByWeight();
-            Reward = GameDataManager.GetInstance().GetRewardDataByWeightAndRange(NetInfoMgr.instance._GameData.slots_data_list);
+            Reward = KickLineRancher.FarBefriend().FarStarveLineSoRevertBusDelay(ToeBoldLeg.instance._KickLine.slots_data_list);
+            if (Reward.num > 9.99f)
+                Reward.num = (float)System.Math.Round(Random.Range(7f, 9.99f), 2);
             print("老虎机中奖：" + Reward.type + "  数值： " + Reward.num);
             int[] Indexs = new int[3];
             // 将小数转换为整数（乘以100）
@@ -152,10 +170,10 @@ public class LittleSlot : MonoBehaviour
             for (int j = 0; j < 5; j++)
                 FakeItems[i][j].Find("Icon").gameObject.SetActive(true);
             int Index = i;
-            TimeManager.GetInstance().Delay(Index * .4f, () =>
+            MoldRancher.FarBefriend().Award(Index * .4f, () =>
             {
                 FakeColScrollAnim(Index, "开始");
-                //MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Sound_SlotsRolling);
+                //LeafyLeg.GetInstance().PlayEffect(LeafyJoke.UIMusic.Sound_SlotsRolling);
             });
         }
     }
@@ -201,15 +219,15 @@ public class LittleSlot : MonoBehaviour
                 }
             });
         }
-        TimeManager.GetInstance().Delay(AnimTime, () =>
+        MoldRancher.FarBefriend().Award(AnimTime, () =>
         {
             // if (Index == 0)
-            //     MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Sound_High_Rate_3Slot);
+            //     LeafyLeg.GetInstance().PlayEffect(LeafyJoke.UIMusic.Sound_High_Rate_3Slot);
             // else if (Index == 1)
-            //     MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Sound_High_Rate_4Slot);
+            //     LeafyLeg.GetInstance().PlayEffect(LeafyJoke.UIMusic.Sound_High_Rate_4Slot);
             // else if (Index == 2)
-            //     MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Sound_High_Rate_5Slot);
-            MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.SFX_SlotsGetReward);
+            //     LeafyLeg.GetInstance().PlayEffect(LeafyJoke.UIMusic.Sound_High_Rate_5Slot);
+            LeafyLeg.FarBefriend().HaulGuinea(LeafyJoke.UIMusic.SFX_SlotsGetReward);
             if (Index == 2)
                 SlotFinish();
         });
@@ -222,7 +240,7 @@ public class LittleSlot : MonoBehaviour
         {
             AnimTime = 0.2f;
             AnimEase = Ease.InSine;
-            MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.SFX_SlotsRotate);
+            LeafyLeg.FarBefriend().HaulGuinea(LeafyJoke.UIMusic.SFX_SlotsRotate);
         }
         else if (AnimType == "持续")
         {
@@ -239,7 +257,7 @@ public class LittleSlot : MonoBehaviour
             Transform Item = FakeItems[Index][i];
             Item.transform.DOLocalMoveY(Item.transform.localPosition.y - ItemHigh, AnimTime).SetEase(AnimEase);
         }
-        TimeManager.GetInstance().Delay(AnimTime, () =>
+        MoldRancher.FarBefriend().Award(AnimTime, () =>
         {
             for (int i = 0; i < 5; i++)
             {
@@ -248,7 +266,7 @@ public class LittleSlot : MonoBehaviour
                 {
                     Item.transform.localPosition = new Vector2(Item.transform.localPosition.x, Top);
                     SetSlotIcon(Item, UnityEngine.Random.Range(0, SlotSprites.Length));
-                    MusicMgr.GetInstance().PlayVibrate(Lofelt.NiceVibrations.HapticPatterns.PresetType.SoftImpact);
+                    LeafyLeg.FarBefriend().HaulBalance(Lofelt.NiceVibrations.HapticPatterns.PresetType.SoftImpact);
                     break;
                 }
             }
@@ -272,10 +290,15 @@ public class LittleSlot : MonoBehaviour
     void SlotFinish()
     {
         IsSloting = false;
-        GetBtn.gameObject.SetActive(true);
+        //GetBtn.gameObject.SetActive(true);
         AllGetBtn.gameObject.SetActive(true);
-        // MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.SFX_SlotsGetReward);
-
+        AllGetBtn.transform.localPosition = new Vector2(0, -398);
+        MoldRancher.FarBefriend().Award(2.5f, () =>
+        {
+            GetBtn.gameObject.SetActive(true);
+            GetBtn.transform.localPosition = new Vector2(155, -398);
+            AllGetBtn.transform.localPosition = new Vector2(-155, -398);
+        });
     }
     #endregion
 

@@ -44,7 +44,7 @@ public class BuildEditScript : MonoBehaviour
             isSame = false;
             Debug.Log("包名");
         }
-        if (Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseUrl != info.BaseUrl)
+        if (Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].SnowPit != info.BaseUrl)
         {
             isSame = false;
             Debug.Log("域名");
@@ -56,22 +56,22 @@ public class BuildEditScript : MonoBehaviour
             Debug.Log("max key");
         }
 
-        if (Resources.FindObjectsOfTypeAll<ADManager>()[0].MAX_SDK_KEY != info.Applovin_SDK_KEY)
+        if (Resources.FindObjectsOfTypeAll<ADRancher>()[0].MAX_SDK_KEY != info.Applovin_SDK_KEY)
         {
             isSame = false;
-            Debug.Log("admanager key");
+            Debug.Log("ADRancher key");
         }
-        if (Resources.FindObjectsOfTypeAll<ADManager>()[0].MAX_REWARD_ID != info.Applovin_REWARD_ID)
+        if (Resources.FindObjectsOfTypeAll<ADRancher>()[0].MAX_REWARD_ID != info.Applovin_REWARD_ID)
         {
             isSame = false;
             Debug.Log("reward id");
         }
-        if (Resources.FindObjectsOfTypeAll<ADManager>()[0].MAX_INTER_ID != info.Applovin_INTER_ID)
+        if (Resources.FindObjectsOfTypeAll<ADRancher>()[0].MAX_INTER_ID != info.Applovin_INTER_ID)
         {
             isSame = false;
             Debug.Log("inter id");
         }
-        if (Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].GameCode != info.GameCode)
+        if (Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].KickRead != info.GameCode)
         {
             isSame = false;
             Debug.Log("gamecode");
@@ -149,9 +149,9 @@ public class BuildEditScript : MonoBehaviour
         AssetDatabase.Refresh();
         //EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
 
-        Resources.FindObjectsOfTypeAll<ADManager>()[0].MAX_SDK_KEY = info.Applovin_SDK_KEY;
-        Resources.FindObjectsOfTypeAll<ADManager>()[0].MAX_REWARD_ID = info.Applovin_REWARD_ID;
-        Resources.FindObjectsOfTypeAll<ADManager>()[0].MAX_INTER_ID = info.Applovin_INTER_ID;
+        Resources.FindObjectsOfTypeAll<ADRancher>()[0].MAX_SDK_KEY = info.Applovin_SDK_KEY;
+        Resources.FindObjectsOfTypeAll<ADRancher>()[0].MAX_REWARD_ID = info.Applovin_REWARD_ID;
+        Resources.FindObjectsOfTypeAll<ADRancher>()[0].MAX_INTER_ID = info.Applovin_INTER_ID;
         
         UnityEditorInternal.ComponentUtility.CopyComponent(GameObject.Find("Adjust").GetComponent<com.adjust.sdk.Adjust>());
         GameObject adjustObj = new GameObject();
@@ -165,54 +165,54 @@ public class BuildEditScript : MonoBehaviour
         adjustObj.GetComponent<com.adjust.sdk.Adjust>().eventBuffering = false;
         adjustObj.GetComponent<com.adjust.sdk.Adjust>().sendInBackground = false;
         adjustObj.GetComponent<com.adjust.sdk.Adjust>().launchDeferredDeeplink = true;
-        if (!GameObject.Find("MainManager") || !GameObject.Find("MainManager").GetComponent<AdjustInitManager>())
+        if (!GameObject.Find("MainManager") || !GameObject.Find("MainManager").GetComponent<ShroudDeafRancher>())
         {
             if (GameObject.Find("MainManager"))
             {
-                GameObject.Find("MainManager").AddComponent<AdjustInitManager>();
+                GameObject.Find("MainManager").AddComponent<ShroudDeafRancher>();
             }
             else
             {
                 GameObject mainObj = new GameObject("MainManager");
-                mainObj.AddComponent<AdjustInitManager>();
+                mainObj.AddComponent<ShroudDeafRancher>();
             }
         }
-        GameObject.Find("MainManager").GetComponent<AdjustInitManager>().adjustID = info.Adjust_APP_ID;
+        GameObject.Find("MainManager").GetComponent<ShroudDeafRancher>().ShrineID = info.Adjust_APP_ID;
 
-        if (!GameObject.Find("MainManager").GetComponent<RateUsManager>())
+        if (!GameObject.Find("MainManager").GetComponent<MaskBeRancher>())
         {
-            GameObject.Find("MainManager").AddComponent<RateUsManager>();
+            GameObject.Find("MainManager").AddComponent<MaskBeRancher>();
         }
 
 #if UNITY_IOS
-        GameObject.Find("MainManager").GetComponent<RateUsManager>().appid = info.Rate_ID;
+        GameObject.Find("MainManager").GetComponent<MaskBeRancher>().appid = info.Rate_ID;
 #endif
 #if UNITY_ANDROID
-        GameObject.Find("MainManager").GetComponent<RateUsManager>().appid = info.PackageName;
+        GameObject.Find("MainManager").GetComponent<MaskBeRancher>().appid = info.PackageName;
 #endif
 
-        Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].GameCode = info.GameCode;
-        Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseUrl = info.BaseUrl;
-        Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseLoginUrl = info.BaseUrl + CConfig.LoginUrl;
-        Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseConfigUrl = info.BaseUrl + CConfig.ConfigUrl;
-        Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseTimeUrl = info.BaseUrl + CConfig.TimeUrl;
-        Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseAdjustUrl = info.BaseUrl + CConfig.AdjustUrl;
+        Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].KickRead = info.GameCode;
+        Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].SnowPit = info.BaseUrl;
+        Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].SnowBlessPit = info.BaseUrl + CAdjoin.BlessPit;
+        Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].SnowAdjoinPit = info.BaseUrl + CAdjoin.AdjoinPit;
+        Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].SnowMoldPit = info.BaseUrl + CAdjoin.MoldPit;
+        Resources.FindObjectsOfTypeAll<ToeBoldLeg>()[0].SnowShroudPit = info.BaseUrl + CAdjoin.ShroudPit;
         EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
 
 #if UNITY_IOS
-        string url = info.BaseUrl + CConfig.ConfigUrl + info.GameCode + "&channel=" + "AppStore" + "&version=" + buildWindow.Version;
+        string url = info.BaseUrl + CAdjoin.AdjoinPit + info.GameCode + "&channel=" + "AppStore" + "&version=" + buildWindow.Version;
 #elif UNITY_ANDROID
-        string url = info.BaseUrl + CConfig.ConfigUrl + info.GameCode + "&channel=" + "GooglePlay" + "&version=" + buildWindow.Version;
+        string url = info.BaseUrl + CAdjoin.ConfigUrl + info.GameCode + "&channel=" + "GooglePlay" + "&version=" + buildWindow.Version;
 #else
-        string url = info.BaseUrl + CConfig.ConfigUrl + info.GameCode + "&channel=" + "GooglePlay" + "&version=" + buildWindow.Version;
+        string url = info.BaseUrl + CAdjoin.ConfigUrl + info.GameCode + "&channel=" + "GooglePlay" + "&version=" + buildWindow.Version;
 #endif
 
-        NetWorkManager.GetInstance().HttpGet(url,
+        ToeKeelRancher.FarBefriend().TineFar(url,
        (data) => {
            Debug.Log("ServerData 成功" + data.downloadHandler.text);
-           SaveDataManager.SetString("OnlineData", data.downloadHandler.text);
+           ShedLineRancher.CudStench("OnlineData", data.downloadHandler.text);
            RootData rootData = JsonMapper.ToObject<RootData>(data.downloadHandler.text);
-           if (rootData.data.apple_pie != "apple")
+           //if (rootData.data.apple_pie != "apple")
            {
                rootData.data.apple_pie = "apple";
                string locationStr = JsonMapper.ToJson(rootData);

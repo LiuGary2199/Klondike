@@ -213,7 +213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 144851223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc44345ca9310574fa50c645e6a7254f, type: 3}
+  m_Script: {fileID: 11500000, guid: 965d9c9367a442243bfbb5eedf54d2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!102 &144851225
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 144851223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: MyCallBack
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 007f2c3f7b0e4a048ae89d65dcd38729, type: 3}
+  m_Script: {fileID: 11500000, guid: d6cc85688619188498e1ed9002b0bc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 1099668624}
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 276461884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: Prefab
@@ -449,8 +449,8 @@ MonoBehaviour:
   AllowLocalizedParameters: 1
   AllowParameters: 1
   TranslatedObjects:
-  - {fileID: 100000, guid: d243bb55d50b4424cb4d5e5036104aef, type: 3}
-  - {fileID: 100000, guid: a5c71238940815045b04992831c96352, type: 3}
+  - {fileID: 100000, guid: f7322ec8582ed694b803b391cf005f44, type: 3}
+  - {fileID: 100000, guid: fd9539b8ccdbb8047979a7f2a4881aa2, type: 3}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8b481d182cbcd4293524eb92ee520c, type: 3}
+  m_Script: {fileID: 11500000, guid: 490cc9c3c48bffc4d806684fa3f8462d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 1723805335}
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b29d7ab09a96634a9f704e6a1f21193, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fa283cc9c75173489878fc7c02f9a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 1666749076}
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 431326927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e8dc5acee678e4cbb534523a5184d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Language: Spanish
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 87e96283e85053343bc47c9691614f7c, type: 3}
+  m_Texture: {fileID: 2800000, guid: 977f882213b42bc429e754f09155688d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 663069739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: MeshRenderer
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 941646749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: Standard Unity Example
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099668622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: Audio
@@ -1231,8 +1231,8 @@ MonoBehaviour:
   AllowLocalizedParameters: 1
   AllowParameters: 1
   TranslatedObjects:
-  - {fileID: 8300000, guid: d43b462874fb2a14aaca956682ba3596, type: 3}
-  - {fileID: 8300000, guid: e68e601305e6218408e8208f956472c7, type: 3}
+  - {fileID: 8300000, guid: 01d076bfb724ab246b860ef41b70e40c, type: 3}
+  - {fileID: 8300000, guid: ca97371875ea5ed4894d7f5ab09bc893, type: 3}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1255,7 +1255,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: be316fa0cb281b241bb2f1e1a00c55c3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a8c34362e7c304542b16aacae5f5453b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1364070357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488051eaa73ba421e8fe4868f2e0f364, type: 3}
+  m_Script: {fileID: 11500000, guid: 93df51a42f61b0446b90638751df7aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mSource:
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e865dd37373234c9d966bdd78278e1, type: 3}
+  m_Script: {fileID: 11500000, guid: b197d60ec09bde640b642e496a39a2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 941646751}
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e865dd37373234c9d966bdd78278e1, type: 3}
+  m_Script: {fileID: 11500000, guid: b197d60ec09bde640b642e496a39a2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 144851225}
@@ -1638,7 +1638,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1540298482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e8dc5acee678e4cbb534523a5184d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Language: French
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: fdd6d36bfa4c41c4f988be3be486b5f8, type: 3}
+  m_Texture: {fileID: 2800000, guid: e0660104b8277e64db336d3ae0b54630, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1783,7 +1783,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1666749073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: Flag Sprites
@@ -1850,7 +1850,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0ff5ba6aa9b08494bb14a8728ee51d9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 627e83320458bc447a8c7fb06c895762, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4679336707a2b54caa10d99561be751, type: 3}
+  m_Script: {fileID: 11500000, guid: efe780db9c4efbd4092128f7e9e1eab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 663069742}
@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2059278658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e8dc5acee678e4cbb534523a5184d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Language: English
@@ -2194,7 +2194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 8f7115ef5a3ecfd42935c3ff54434ae8, type: 3}
+  m_Texture: {fileID: 2800000, guid: 1d4241960679e39459621b27058d73c2, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

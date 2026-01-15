@@ -717,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 87e96283e85053343bc47c9691614f7c, type: 3}
+  m_Texture: {fileID: 2800000, guid: 977f882213b42bc429e754f09155688d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 326863485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e8dc5acee678e4cbb534523a5184d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Language: Spanish
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a58a0cb6f0764ca42b2877aa2c6fa0af, type: 3}
+  m_Script: {fileID: 11500000, guid: a6419ca6467fc774c938352d7dca4578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 1383460143}
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072564158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33897b093844df84a8e8a0258a1fb0dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 01c642c13527c2747aeb9d637b40a912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1072564161
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1115346775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: Basic Text
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1172968457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5379d3aeaf18a24fa23c26a749edfe5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2036307f69f1bb64eb56065ac900c7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Terms:
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1364070357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488051eaa73ba421e8fe4868f2e0f364, type: 3}
+  m_Script: {fileID: 11500000, guid: 93df51a42f61b0446b90638751df7aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mSource:
@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383460140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: RawImage
@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 87e96283e85053343bc47c9691614f7c, type: 3}
+  m_Texture: {fileID: 2800000, guid: 977f882213b42bc429e754f09155688d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3082,7 +3082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 8f7115ef5a3ecfd42935c3ff54434ae8, type: 3}
+  m_Texture: {fileID: 2800000, guid: 1d4241960679e39459621b27058d73c2, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3106,7 +3106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1714070055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e8dc5acee678e4cbb534523a5184d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Language: English
@@ -3192,7 +3192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bedef2aeaac8da04faa9a07b7241d0ad, type: 3}
+  m_Script: {fileID: 11500000, guid: a8215e1f8aad4a349ada5ce8ce225e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 1778691771}
@@ -3243,7 +3243,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778691768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18741314a82801e4bb8738c60d2631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTerm: Sprite
@@ -3290,7 +3290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0ff5ba6aa9b08494bb14a8728ee51d9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 627e83320458bc447a8c7fb06c895762, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3707,7 +3707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: fdd6d36bfa4c41c4f988be3be486b5f8, type: 3}
+  m_Texture: {fileID: 2800000, guid: e0660104b8277e64db336d3ae0b54630, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3731,7 +3731,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1962922073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Script: {fileID: 11500000, guid: c1e8dc5acee678e4cbb534523a5184d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Language: French
@@ -3976,7 +3976,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332e36893e7cf4a49b3c1f72f76cd5e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fc596b50e9bd2d4dadc7bd2e7b04df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mTarget: {fileID: 1115346778}

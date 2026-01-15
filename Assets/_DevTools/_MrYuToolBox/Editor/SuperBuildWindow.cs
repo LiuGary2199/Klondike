@@ -96,7 +96,7 @@ public class SuperBuildWindow : UnityEditor.EditorWindow
             if (GUILayout.Button("解密Applovin_SDK_KEY"))
             {
                 info.DesState = "STR";
-                info.Applovin_SDK_KEY = GetSystemData.DecryptDES(info.Applovin_SDK_KEY);
+                info.Applovin_SDK_KEY = FarFarmerLine.FactoryDES(info.Applovin_SDK_KEY);
 
             }
         }
@@ -105,7 +105,7 @@ public class SuperBuildWindow : UnityEditor.EditorWindow
             if (GUILayout.Button("加密Applovin_SDK_KEY"))
             {
                 info.DesState = "DES";
-                info.Applovin_SDK_KEY = GetSystemData.EncryptDES(info.Applovin_SDK_KEY);
+                info.Applovin_SDK_KEY = FarFarmerLine.AnotherDES(info.Applovin_SDK_KEY);
 
             }
         }

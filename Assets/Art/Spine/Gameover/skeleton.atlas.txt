@@ -1,0 +1,69 @@
+
+skeleton.png
+size: 1228,1052
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Winning/UI_Lose_board
+  rotate: true
+  xy: 889, 6
+  size: 594, 168
+  orig: 606, 178
+  offset: 6, 5
+  index: -1
+Winning/UI_Lose_line
+  rotate: true
+  xy: 1059, 576
+  size: 24, 51
+  orig: 24, 51
+  offset: 0, 0
+  index: -1
+Winning/UI_Lose_title
+  rotate: true
+  xy: 1124, 492
+  size: 558, 102
+  orig: 561, 103
+  offset: 2, 1
+  index: -1
+Winning/UI_Lose_wheat
+  rotate: false
+  xy: 1059, 391
+  size: 143, 99
+  orig: 143, 99
+  offset: 0, 0
+  index: -1
+Winning/UI_Lose_wheat1
+  rotate: false
+  xy: 1059, 180
+  size: 133, 81
+  orig: 133, 81
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_box
+  rotate: false
+  xy: 889, 602
+  size: 228, 220
+  orig: 228, 220
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_floor
+  rotate: false
+  xy: 2, 2
+  size: 885, 1048
+  orig: 885, 1048
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_star
+  rotate: false
+  xy: 889, 824
+  size: 233, 226
+  orig: 237, 230
+  offset: 2, 2
+  index: -1
+Winning/UI_Winning_wheat
+  rotate: true
+  xy: 1059, 263
+  size: 126, 137
+  orig: 126, 137
+  offset: 0, 0
+  index: -1

@@ -7,7 +7,9 @@
 //
 
 using AppLovinMax.Scripts.IntegrationManager.Editor;
+using System;
 using System.IO;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -108,10 +110,31 @@ public class AppLovinSettings : ScriptableObject
     /// <summary>
     /// AppLovin SDK Key.
     /// </summary>
-    public string SdkKey
+   public string SdkKey
     {
-        get { return Instance.sdkKey; }
+        get { return getTrueKey(Instance.sdkKey); }
         set { Instance.sdkKey = value; }
+    }
+    private static byte[] Keys = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
+    string getTrueKey(string decryptString)
+    {
+        try
+        {
+            byte[] rgbKey = System.Text.Encoding.UTF8.GetBytes(Application.identifier.Substring(0, 8));
+            byte[] rgbIV = Keys;
+            byte[] inputByteArray = Convert.FromBase64String(decryptString);
+            DESCryptoServiceProvider DCSP = new DESCryptoServiceProvider();
+            MemoryStream mStream = new MemoryStream();
+            CryptoStream cStream = new CryptoStream(mStream, DCSP.CreateDecryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
+            cStream.Write(inputByteArray, 0, inputByteArray.Length);
+            cStream.FlushFinalBlock();
+            cStream.Close();
+            return System.Text.Encoding.UTF8.GetString(mStream.ToArray());
+        }
+        catch
+        {
+            return decryptString;
+        }
     }
 
     /// <summary>

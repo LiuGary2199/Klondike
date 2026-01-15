@@ -55,10 +55,10 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
             "MaxSdk/Mediation/GoogleAdManager/Editor/MaxGoogleAdManagerInitialize.cs.meta",
             "MaxSdk/Mediation/GoogleAdManager/Editor/PostProcessor.cs",
             "MaxSdk/Mediation/GoogleAdManager/Editor/PostProcessor.cs.meta",
-            "MaxSdk/Mediation/GoogleAdManager/Editor/MaxSdk.Mediation.GoogleAdManager.Editor.asmdef",
-            "MaxSdk/Mediation/GoogleAdManager/Editor/MaxSdk.Mediation.GoogleAdManager.Editor.asmdef.meta",
-            "Plugins/Android/MaxMediationGoogleAdManager.androidlib",
-            "Plugins/Android/MaxMediationGoogleAdManager.androidlib.meta",
+            "MaxSdk/Mediation/GoogleAdManager/Editor/MaxSdk.Mediation.GoogleADRancher.Editor.asmdef",
+            "MaxSdk/Mediation/GoogleAdManager/Editor/MaxSdk.Mediation.GoogleADRancher.Editor.asmdef.meta",
+            "Plugins/Android/MaxMediationGoogleADRancher.androidlib",
+            "Plugins/Android/MaxMediationGoogleADRancher.androidlib.meta",
 
             // The `VariableService` has been removed.
             "MaxSdk/Scripts/MaxVariableServiceAndroid.cs",

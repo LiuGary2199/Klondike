@@ -9,8 +9,8 @@ using System;
 public class AudioVolumeEditWindow : EditorWindow
 {
     Vector3 scrollPos = Vector2.zero;
-    Dictionary<string, AudioModel> UIAudioGroup;
-    Dictionary<string, AudioModel> SceneAudioGroup;
+    Dictionary<string, FlukeLvory> UIAudioGroup;
+    Dictionary<string, FlukeLvory> SceneAudioGroup;
     //序列化对象
     protected SerializedObject _serializedObject;
     [MenuItem("遇先生工具包/一键[调音]")]
@@ -27,25 +27,25 @@ public class AudioVolumeEditWindow : EditorWindow
     }
     void refreshAudioData()
     {
-        UIAudioGroup = new Dictionary<string, AudioModel>();
-        SceneAudioGroup = new Dictionary<string, AudioModel>();
+        UIAudioGroup = new Dictionary<string, FlukeLvory>();
+        SceneAudioGroup = new Dictionary<string, FlukeLvory>();
 
         string Filepath = Application.streamingAssetsPath + "/Audio/AudioInfo" + ".json";
         Filepath = Filepath.Replace("StreamingAssets", "Resources");
         
         FileInfo FileInfo = new FileInfo(Filepath);
-        Dictionary<string, AudioModel> audioDic = new Dictionary<string, AudioModel>();
+        Dictionary<string, FlukeLvory> audioDic = new Dictionary<string, FlukeLvory>();
         if (FileInfo.Exists)
         {
             audioDic = LoadJson(Filepath);
         }
 
         //UI
-        foreach(object music in Enum.GetValues(typeof(MusicType.UIMusic)))
+        foreach(object music in Enum.GetValues(typeof(LeafyJoke.UIMusic)))
         {
             string name = music.ToString();
             if (name == "None") continue;
-            AudioModel model = new AudioModel();
+            FlukeLvory model = new FlukeLvory();
             if (audioDic.ContainsKey(name))
             {
                 model = audioDic[name];
@@ -60,11 +60,11 @@ public class AudioVolumeEditWindow : EditorWindow
         }
 
         // Scene
-        foreach (object music in Enum.GetValues(typeof(MusicType.SceneMusic)))
+        foreach (object music in Enum.GetValues(typeof(LeafyJoke.SceneMusic)))
         {
             string name = music.ToString();
             if (name == "None") continue;
-            AudioModel model = new AudioModel();
+            FlukeLvory model = new FlukeLvory();
             if (audioDic.ContainsKey(name))
             {
                 model = audioDic[name];
@@ -78,20 +78,20 @@ public class AudioVolumeEditWindow : EditorWindow
             SceneAudioGroup.Add(name, model);
         }
     }
-    public Dictionary<string, AudioModel> LoadJson(string Filepath)
+    public Dictionary<string, FlukeLvory> LoadJson(string Filepath)
     {
         StreamReader reader = new StreamReader(Filepath);
         string jsonString = reader.ReadToEnd();
-        Dictionary<string, AudioModel> audioGroup = JsonMapper.ToObject<Dictionary<string, AudioModel>>(jsonString);
+        Dictionary<string, FlukeLvory> audioGroup = JsonMapper.ToObject<Dictionary<string, FlukeLvory>>(jsonString);
         reader.Dispose();
         reader.Close();
         return audioGroup;
     }
     public void SaveJson(string Filepath)
     {
-        Dictionary<string, AudioModel> dic = new Dictionary<string, AudioModel>();
-        MergeDictionaries.Merge(dic, UIAudioGroup);
-        MergeDictionaries.Merge(dic, SceneAudioGroup);
+        Dictionary<string, FlukeLvory> dic = new Dictionary<string, FlukeLvory>();
+        MergeDictionaries.Moist(dic, UIAudioGroup);
+        MergeDictionaries.Moist(dic, SceneAudioGroup);
         string JsonData = JsonMapper.ToJson(dic);
         StreamWriter ResourceWrite = new StreamWriter(Filepath);
         ResourceWrite.WriteLine(JsonData);

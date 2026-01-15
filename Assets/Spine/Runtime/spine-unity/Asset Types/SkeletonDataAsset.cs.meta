@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1b3b4b945939a54ea0b23d3396115fb
+guid: fd49bae428895c749bb3cdac2b9620b8
 timeCreated: 1536403985
 licenseType: Pro
 MonoImporter:
@@ -14,7 +14,7 @@ MonoImporter:
   - skeletonJSON: {instanceID: 0}
   - controller: {instanceID: 0}
   executionOrder: 0
-  icon: {fileID: 2800000, guid: 68defdbc95b30a74a9ad396bfc9a2277, type: 3}
+  icon: {fileID: 2800000, guid: 922e75bc3afeb1a4a8ba953f4446258c, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

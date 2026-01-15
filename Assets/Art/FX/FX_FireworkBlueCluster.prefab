@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 19873586}
   - component: {fileID: 19912798}
   - component: {fileID: 3981041787883461778}
-  - component: {fileID: 6831277898731131284}
+  - component: {fileID: 6831277898179901723}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -31,7 +31,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
-  m_Father: {fileID: 1981771569867450228}
+  m_Father: {fileID: 1981771569151201819}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4777,7 +4777,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107358}
   m_CullTransparentMesh: 0
---- !u!114 &6831277898731131284
+--- !u!114 &6831277898179901723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4786,7 +4786,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 107358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae664350fe479439d9895000692d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 536ecea80c9bbcc4198998e59bb331a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: ec286abd36dd83b4aa9d001b25dce818, type: 2}
@@ -4811,7 +4811,7 @@ GameObject:
   - component: {fileID: 19869618}
   - component: {fileID: 19989792}
   - component: {fileID: 9123479825649160070}
-  - component: {fileID: 478674885785570756}
+  - component: {fileID: 478674885512666307}
   m_Layer: 0
   m_Name: Flash
   m_TagString: Untagged
@@ -4830,7 +4830,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1981771569867450228}
+  m_Father: {fileID: 1981771569151201819}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -9652,7 +9652,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139182}
   m_CullTransparentMesh: 0
---- !u!114 &478674885785570756
+--- !u!114 &478674885512666307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9661,7 +9661,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 139182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae664350fe479439d9895000692d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 536ecea80c9bbcc4198998e59bb331a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 4779057ac70e00f4d96cddad531e1f02, type: 2}
@@ -9686,7 +9686,7 @@ GameObject:
   - component: {fileID: 19874262}
   - component: {fileID: 19974414}
   - component: {fileID: 6741019820923171727}
-  - component: {fileID: 8661800083492097683}
+  - component: {fileID: 8661800083667692459}
   m_Layer: 0
   m_Name: FireworkCluster
   m_TagString: Untagged
@@ -9705,7 +9705,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1981771569867450228}
+  m_Father: {fileID: 1981771569151201819}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14518,7 +14518,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159438}
   m_CullTransparentMesh: 0
---- !u!114 &8661800083492097683
+--- !u!114 &8661800083667692459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14527,7 +14527,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 159438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae664350fe479439d9895000692d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 536ecea80c9bbcc4198998e59bb331a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 36bb7ed0f88d2124cbc0aa42a5aaf746, type: 2}
@@ -14548,11 +14548,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1981771569867450228}
+  - component: {fileID: 1981771569151201819}
   - component: {fileID: 19842168}
   - component: {fileID: 19919144}
   - component: {fileID: 4978961121151444277}
-  - component: {fileID: 1080293021206212395}
+  - component: {fileID: 1080293021473777050}
   m_Layer: 0
   m_Name: FX_FireworkBlueCluster
   m_TagString: Untagged
@@ -14560,7 +14560,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1981771569867450228
+--- !u!224 &1981771569151201819
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19415,7 +19415,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165244}
   m_CullTransparentMesh: 0
---- !u!114 &1080293021206212395
+--- !u!114 &1080293021473777050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19424,7 +19424,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 165244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae664350fe479439d9895000692d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 536ecea80c9bbcc4198998e59bb331a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 36bb7ed0f88d2124cbc0aa42a5aaf746, type: 2}
