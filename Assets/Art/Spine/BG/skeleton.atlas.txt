@@ -1,0 +1,76 @@
+
+skeleton.png
+size: 2637,1086
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+UI_Item_1
+  rotate: false
+  xy: 2344, 89
+  size: 82, 510
+  orig: 82, 510
+  offset: 0, 0
+  index: -1
+UI_Item_10
+  rotate: true
+  xy: 2, 4
+  size: 1080, 2340
+  orig: 1080, 2340
+  offset: 0, 0
+  index: -1
+UI_Item_2
+  rotate: false
+  xy: 2344, 601
+  size: 286, 483
+  orig: 286, 483
+  offset: 0, 0
+  index: -1
+UI_Item_3
+  rotate: false
+  xy: 2428, 190
+  size: 152, 154
+  orig: 152, 154
+  offset: 0, 0
+  index: -1
+UI_Item_4
+  rotate: true
+  xy: 2546, 5
+  size: 70, 81
+  orig: 70, 81
+  offset: 0, 0
+  index: -1
+UI_Item_5
+  rotate: false
+  xy: 2428, 115
+  size: 128, 73
+  orig: 128, 73
+  offset: 0, 0
+  index: -1
+UI_Item_6
+  rotate: true
+  xy: 2344, 2
+  size: 85, 122
+  orig: 85, 122
+  offset: 0, 0
+  index: -1
+UI_Item_7
+  rotate: false
+  xy: 2468, 2
+  size: 76, 111
+  orig: 76, 111
+  offset: 0, 0
+  index: -1
+UI_Item_8
+  rotate: true
+  xy: 2428, 346
+  size: 253, 167
+  orig: 253, 167
+  offset: 0, 0
+  index: -1
+UI_Item_9
+  rotate: false
+  xy: 2558, 77
+  size: 77, 111
+  orig: 77, 111
+  offset: 0, 0
+  index: -1

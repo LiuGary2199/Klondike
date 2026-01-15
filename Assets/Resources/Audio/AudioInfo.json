@@ -1,0 +1,132 @@
+{
+	"Sound_GoldCoin": {
+		"name": "Sound_GoldCoin",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/Sound_GoldCoin"
+	},
+	"Sound_OneArmBandit": {
+		"name": "Sound_OneArmBandit",
+		"volume": 1.0,
+		"filePath": "Audio/UIMusic/Sound_OneArmBandit"
+	},
+	"Sound_PopShow": {
+		"name": "Sound_PopShow",
+		"volume": 1.0,
+		"filePath": "Audio/UIMusic/Sound_PopShow"
+	},
+	"Sound_UIButton": {
+		"name": "Sound_UIButton",
+		"volume": 1.0,
+		"filePath": "Audio/UIMusic/Sound_UIButton"
+	},
+	"Sound_BGM": {
+		"name": "Sound_BGM",
+		"volume": 1.0,
+		"filePath": "Audio/SceneMusic/Sound_BGM"
+	},
+	"SFX_BigWin": {
+		"name": "SFX_BigWin",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_BigWin"
+	},
+	"SFX_CardCollect": {
+		"name": "SFX_CardCollect",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_CardCollect"
+	},
+	"SFX_CardLink": {
+		"name": "SFX_CardLink",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_CardLink"
+	},
+	"SFX_CardOpen": {
+		"name": "SFX_CardOpen",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_CardOpen"
+	},
+	"SFX_CardSet": {
+		"name": "SFX_CardSet",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_CardSet"
+	},
+	"SFX_CardSwitch": {
+		"name": "SFX_CardSwitch",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_CardSwitch"
+	},
+	"SFX_Coin": {
+		"name": "SFX_Coin",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_Coin"
+	},
+	"SFX_Diamond": {
+		"name": "SFX_Diamond",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_Diamond"
+	},
+	"SFX_EedLostGame": {
+		"name": "SFX_EedLostGame",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_EedLostGame"
+	},
+	"SFX_EndSuccessGame": {
+		"name": "SFX_EndSuccessGame",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_EndSuccessGame"
+	},
+	"SFX_FlyBubble": {
+		"name": "SFX_FlyBubble",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_FlyBubble"
+	},
+	"SFX_LuckyWheelCollection": {
+		"name": "SFX_LuckyWheelCollection",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_LuckyWheelCollection"
+	},
+	"SFX_LuckyWheelOpen": {
+		"name": "SFX_LuckyWheelOpen",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_LuckyWheelOpen"
+	},
+	"SFX_LuckyWheelRolling": {
+		"name": "SFX_LuckyWheelRolling",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_LuckyWheelRolling"
+	},
+	"SFX_LuckyWheelStop": {
+		"name": "SFX_LuckyWheelStop",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_LuckyWheelStop"
+	},
+	"SFX_Scratch": {
+		"name": "SFX_Scratch",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_Scratch"
+	},
+	"SFX_ScratchGetReward": {
+		"name": "SFX_ScratchGetReward",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_ScratchGetReward"
+	},
+	"SFX_Slots": {
+		"name": "SFX_Slots",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_Slots"
+	},
+	"SFX_SlotsGetReward": {
+		"name": "SFX_SlotsGetReward",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_SlotsGetReward"
+	},
+	"SFX_SlotsRotate": {
+		"name": "SFX_SlotsRotate",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_SlotsRotate"
+	},
+	"SFX_Wand": {
+		"name": "SFX_Wand",
+		"volume": 1,
+		"filePath": "Audio/UIMusic/SFX_Wand"
+	}
+}

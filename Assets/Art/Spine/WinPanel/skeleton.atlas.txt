@@ -1,0 +1,69 @@
+
+skeleton.png
+size: 1655,889
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Winning/UI_Winning_Empty_stars
+  rotate: true
+  xy: 1257, 654
+  size: 233, 226
+  orig: 237, 230
+  offset: 2, 2
+  index: -1
+Winning/UI_Winning_board
+  rotate: true
+  xy: 1257, 58
+  size: 594, 168
+  orig: 606, 178
+  offset: 6, 5
+  index: -1
+Winning/UI_Winning_box
+  rotate: true
+  xy: 1427, 189
+  size: 228, 220
+  orig: 228, 220
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_floor
+  rotate: true
+  xy: 2, 2
+  size: 885, 1048
+  orig: 885, 1048
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_fruit
+  rotate: true
+  xy: 1427, 126
+  size: 61, 69
+  orig: 61, 69
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_star
+  rotate: true
+  xy: 1427, 419
+  size: 233, 226
+  orig: 237, 230
+  offset: 2, 2
+  index: -1
+Winning/UI_Winning_tille
+  rotate: true
+  xy: 1052, 31
+  size: 856, 203
+  orig: 857, 203
+  offset: 1, 0
+  index: -1
+Winning/UI_Winning_wheat
+  rotate: false
+  xy: 1485, 750
+  size: 126, 137
+  orig: 126, 137
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_wheat1
+  rotate: true
+  xy: 1485, 663
+  size: 85, 126
+  orig: 85, 126
+  offset: 0, 0
+  index: -1

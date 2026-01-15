@@ -1,0 +1,155 @@
+﻿{
+	"ConfigInfo": [
+		{
+			"Key": "本配置文件说明"
+		},
+		{
+			"Key": "HomePanel",
+			"Value": "UIPanel\\HomePanel"
+		},
+		{
+			"Key": "GamePanel",
+			"Value": "UIPanel\\GamePanel"
+		},
+		{
+			"Key": "SettingPanel",
+			"Value": "UIPanel\\SettingPanel"
+		},
+		{
+			"Key": "Toast",
+			"Value": "UIPanel\\Common\\Toast"
+		},
+		{
+			"Key": "CollectEffect",
+			"Value": "UIPanel\\Common\\CollectEffect"
+		},
+		{
+			"Key": "LevelCompletePanel",
+			"Value": "UIPanel\\LevelCompletePanel"
+		},
+		{
+			"Key": "RateUsPanel",
+			"Value": "UIPanel\\RateUsPanel"
+		},
+		{
+			"Key": "DailyGiftPanel",
+			"Value": "UIPanel\\DailyGift\\DailyGiftPanel"
+		},
+		{
+			"Key": "RemoveAdPanel",
+			"Value": "UIPanel\\RemoveAd\\RemoveAdPanel"
+		},
+		{
+			"Key": "EndlessTreasurePanel",
+			"Value": "UIPanel\\EndlessTreasure\\EndlessTreasurePanel"
+		},
+		{
+			"Key": "RankStarPanel",
+			"Value": "UIPanel\\RankStar\\RankStarPanel"
+		},
+		{
+			"Key": "RewardPanel",
+			"Value": "UIPanel\\RewardPanel"
+		},
+		{
+			"Key": "NewUserGuidePanel",
+			"Value": "UIPanel\\NewUserGuidePanel"
+		},
+		{
+			"Key": "ScratchPanel",
+			"Value": "UIPanel\\ScratchPanel"
+		},
+		{
+			"Key": "LuckyWheelPanel",
+			"Value": "UIPanel\\LuckyWheelPanel"
+		},
+		{
+			"Key": "FlyBubbleRewardPanel",
+			"Value": "UIPanel\\FlyBubbleRewardPanel"
+		},
+		{
+			"Key": "PortraitRedeemPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\RedeemPanel"
+		},
+		{
+			"Key": "PortraitWithdrawPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\WithdrawPanel"
+		},
+		{
+			"Key": "PortraitConfirmEmailPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\ConfirmEmailPanel"
+		},
+		{
+			"Key": "PortraitRecordPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\RecordPanel"
+		},
+		{
+			"Key": "PortraitGoldAmazonRedeemPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\GoldAmazonRedeemPanel"
+		},
+		{
+			"Key": "PortraitRedeemGiftPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\RedeemGiftPanel"
+		},
+		{
+			"Key": "PortraitAddressPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\AddressPanel"
+		},
+		{
+			"Key": "PortraitInstructionsPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\InstructionsPanel"
+		},
+		{
+			"Key": "PortraitRewardsGiftInstructionPanel",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\RewardsGiftInstructionPanel"
+		},
+		{
+			"Key": "PortraitCollectPuzzle",
+			"Value": "SOHOShop\\UIPanel\\Portrait\\CollectPuzzle"
+		},
+		{
+			"Key": "LandscapeRedeemPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\RedeemPanel"
+		},
+		{
+			"Key": "LandscapeWithdrawPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\WithdrawPanel"
+		},
+		{
+			"Key": "LandscapeConfirmEmailPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\ConfirmEmailPanel"
+		},
+		{
+			"Key": "LandscapeRecordPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\RecordPanel"
+		},
+		{
+			"Key": "LandscapeGoldAmazonRedeemPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\GoldAmazonRedeemPanel"
+		},
+		{
+			"Key": "LandscapeRedeemGiftPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\RedeemGiftPanel"
+		},
+		{
+			"Key": "LandscapeAddressPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\AddressPanel"
+		},
+		{
+			"Key": "LandscapeInstructionsPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\InstructionsPanel"
+		},
+		{
+			"Key": "LandscapeRewardsGiftInstructionPanel",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\RewardsGiftInstructionPanel"
+		},
+		{
+			"Key": "LandscapeCollectPuzzle",
+			"Value": "SOHOShop\\UIPanel\\Landscape\\CollectPuzzle"
+		},
+		{
+			"Key": "AdManagerTestPanel",
+			"Value": "UIPanel\\Test\\AdManagerTestPanel"
+		}
+	]
+}

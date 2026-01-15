@@ -1,0 +1,62 @@
+
+skeleton.png
+size: 1252,1042
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bubble_Award_star
+  rotate: true
+  xy: 979, 7
+  size: 134, 129
+  orig: 137, 132
+  offset: 1, 2
+  index: -1
+Bubble_Award_title
+  rotate: false
+  xy: 774, 936
+  size: 443, 104
+  orig: 443, 105
+  offset: 0, 0
+  index: -1
+Currency_Awards_title
+  rotate: true
+  xy: 774, 78
+  size: 856, 203
+  orig: 857, 203
+  offset: 1, 0
+  index: -1
+Fe
+  rotate: true
+  xy: 487, 11
+  size: 64, 55
+  orig: 64, 55
+  offset: 0, 0
+  index: -1
+Fe_1
+  rotate: true
+  xy: 2, 2
+  size: 73, 69
+  orig: 73, 69
+  offset: 0, 0
+  index: -1
+LightBG
+  rotate: true
+  xy: 73, 4
+  size: 71, 412
+  orig: 71, 412
+  offset: 0, 0
+  index: -1
+RewardBG
+  rotate: true
+  xy: 979, 143
+  size: 791, 271
+  orig: 791, 272
+  offset: 0, 0
+  index: -1
+RewardBG_1
+  rotate: false
+  xy: 2, 77
+  size: 770, 963
+  orig: 772, 964
+  offset: 1, 1
+  index: -1

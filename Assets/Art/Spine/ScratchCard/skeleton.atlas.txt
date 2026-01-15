@@ -1,0 +1,76 @@
+
+skeleton.png
+size: 1442,889
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Winning/UI_Scratch_Card_lucky_number
+  rotate: true
+  xy: 1222, 442
+  size: 445, 218
+  orig: 447, 219
+  offset: 1, 1
+  index: -1
+Winning/UI_Scratch_Card_persimmon
+  rotate: false
+  xy: 1274, 88
+  size: 109, 106
+  orig: 112, 109
+  offset: 2, 1
+  index: -1
+Winning/UI_Scratch_Card_persimmon1
+  rotate: false
+  xy: 1274, 196
+  size: 115, 105
+  orig: 119, 108
+  offset: 2, 1
+  index: -1
+Winning/UI_Scratch_Card_persimmon2
+  rotate: true
+  xy: 1116, 3
+  size: 58, 55
+  orig: 58, 55
+  offset: 0, 0
+  index: -1
+Winning/UI_Scratch_Card_persimmon3
+  rotate: false
+  xy: 1052, 7
+  size: 62, 54
+  orig: 62, 54
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_board
+  rotate: true
+  xy: 1052, 293
+  size: 594, 168
+  orig: 606, 178
+  offset: 6, 5
+  index: -1
+Winning/UI_Winning_box
+  rotate: true
+  xy: 1052, 63
+  size: 228, 220
+  orig: 228, 220
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_floor
+  rotate: true
+  xy: 2, 2
+  size: 885, 1048
+  orig: 885, 1048
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_wheat
+  rotate: false
+  xy: 1222, 303
+  size: 126, 137
+  orig: 126, 137
+  offset: 0, 0
+  index: -1
+Winning/UI_Winning_wheat1
+  rotate: false
+  xy: 1350, 314
+  size: 85, 126
+  orig: 85, 126
+  offset: 0, 0
+  index: -1
