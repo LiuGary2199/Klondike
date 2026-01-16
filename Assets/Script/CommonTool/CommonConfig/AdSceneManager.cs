@@ -54,6 +54,18 @@ public class AdSceneManager : MonoBehaviour
     // 用于分析事件频率和坐标变化
     private float lastMoveEventTime = 0f;
     private Vector2 lastMoveEventPos = Vector2.zero;
+    
+    // 惯性滚动相关字段
+    private ScrollRect currentScrollingRect = null; // 当前正在滚动的 ScrollRect
+    private Vector2 scrollVelocity = Vector2.zero; // 滚动速度
+    private bool isInertiaScrolling = false; // 是否正在惯性滚动
+    private const float velocityDecayRate = 0.135f; // 速度衰减率（Unity 默认值）
+    private const float minVelocityThreshold = 0.01f; // 最小速度阈值，低于此值停止滚动
+    private Queue<Vector2> velocityHistory = new Queue<Vector2>(); // 速度历史记录（用于计算平均速度）
+    private Queue<float> velocityTimeHistory = new Queue<float>(); // 时间历史记录
+    private const int velocityHistorySize = 5; // 速度历史记录数量
+    private Vector2 lastContentPosition = Vector2.zero; // 上一帧的内容位置（用于计算速度）
+    private float lastContentPositionTime = 0f; // 上一帧的时间
     #endregion
 
     #region 外部 SDK 交互方法
@@ -124,6 +136,12 @@ public class AdSceneManager : MonoBehaviour
         {
             SdkIsInit = false;
             Debug.Log("AdSceneManager：检测到原生鼠标点击，重置 SDK 状态");
+        }
+        
+        // 处理惯性滚动
+        if (isInertiaScrolling && currentScrollingRect != null)
+        {
+            UpdateInertiaScrolling();
         }
     }
     #endregion
@@ -231,8 +249,18 @@ public class AdSceneManager : MonoBehaviour
             eventData1.pressPosition = pressStartPos;
             eventData1.pointerPress = target;
 
-            // 2. 优先处理滑动列表（拖拽类），无其他多余逻辑
-            if (HandleScrollDrag(target, eventData1))
+            // 2. 关键修复：优先检查是否点击了可交互组件（或其子对象，如 Text）
+            // 如果点击的是可交互组件，不拦截事件，让子对象先处理
+            GameObject interactableObj = GetInteractableComponent(target);
+            if (interactableObj != null)
+            {
+                //Debug.Log($"AdSceneManager：检测到可交互组件 - {interactableObj.name}（原始对象：{target.name}）");
+                // 更新 currentPressedObject 为实际的可交互组件
+                currentPressedObject = interactableObj;
+                // 继续执行后续逻辑，让可交互组件处理点击
+            }
+            // 3. 如果不是可交互组件，才处理滑动列表
+            else if (HandleScrollDrag(target, eventData1))
             {
                 Debug.Log($"AdSceneManager：按下已处理滑动列表 - {target.name}");
                 return;
@@ -247,16 +275,17 @@ public class AdSceneManager : MonoBehaviour
                 return;
             }
 
-            // 触发 OnPointerDown
-            IPointerDownHandler downHandler = target.GetComponent<IPointerDownHandler>();
+            // 触发 OnPointerDown（使用实际的可交互组件对象）
+            GameObject targetToHandle = interactableObj != null ? interactableObj : target;
+            IPointerDownHandler downHandler = targetToHandle.GetComponent<IPointerDownHandler>();
             if (downHandler != null)
             {
                 downHandler.OnPointerDown(eventData);
-                Debug.Log($"AdSceneManager：触发 IPointerDownHandler - {target.name}");
+                Debug.Log($"AdSceneManager：触发 IPointerDownHandler - {targetToHandle.name}");
             }
             else
             {
-                Debug.LogWarning($"AdSceneManager：对象 {target.name} 未实现 IPointerDownHandler");
+                Debug.LogWarning($"AdSceneManager：对象 {targetToHandle.name} 未实现 IPointerDownHandler");
             }
         }
         else
@@ -302,7 +331,19 @@ public class AdSceneManager : MonoBehaviour
         lastMoveEventTime = currentTime;
         lastMoveEventPos = TouchPos;
         
-        //Debug.Log($"AdSceneManager：移动事件准备 - " +
+        // 关键修复：如果按下的是可交互组件，且移动距离很小，不处理滚动
+        if (currentPressedObject != null && IsInteractableComponent(currentPressedObject))
+        {
+            if (!isDragging)
+            {
+                // 移动距离小于阈值，可能是点击而不是拖拽，不处理滚动
+                //Debug.Log($"AdSceneManager：可交互组件移动距离 {distance:F2} < 阈值 {dragThreshold}，不处理滚动");
+                lastTouchPos = TouchPos;
+                return;
+            }
+        }
+        
+        //debug.Log($"AdSceneManager：移动事件准备 - " +
         //          $"当前对象：{currentPressedObject.name} | " +
         //          $"屏幕坐标：当前={TouchPos}, 上次={lastTouchPos}, 按下={pressStartPos} | " +
         //          $"屏幕delta：{screenDelta} (大小：{screenDeltaMagnitude:F2}px) | " +
@@ -611,9 +652,24 @@ public class AdSceneManager : MonoBehaviour
             //Debug.Log($"AdSceneManager：触发原生 Toggle 切换 - {targetObject.name} | 状态：{toggle.isOn}");
             return true;
         }
+        toggle = targetObject.GetComponentInParent<Toggle>();
+        if (toggle != null && toggle.interactable)
+        {
+            toggle.isOn = !toggle.isOn;
+            toggle.onValueChanged.Invoke(toggle.isOn);
+            //Debug.Log($"AdSceneManager：触发原生 Toggle 切换 - {targetObject.name} | 状态：{toggle.isOn}");
+            return true;
+        }
 
         // 处理 InputField
         InputField inputField = targetObject.GetComponent<InputField>();
+        if (inputField != null && inputField.interactable)
+        {
+            inputField.ActivateInputField();
+            //Debug.Log($"AdSceneManager：激活原生 InputField - {targetObject.name}");
+            return true;
+        }
+        inputField = targetObject.GetComponentInParent<InputField>();
         if (inputField != null && inputField.interactable)
         {
             inputField.ActivateInputField();
@@ -624,6 +680,385 @@ public class AdSceneManager : MonoBehaviour
         return false;
     }
 
+    #region ScrollRect 辅助方法（边界、弹性、惯性）
+    
+    /// <summary>
+    /// 检测对象是否为可交互组件（需要优先处理点击事件）
+    /// 会向上查找父对象，因为射线可能命中子对象（如 Text 组件）
+    /// </summary>
+    private bool IsInteractableComponent(GameObject obj)
+    {
+        if (obj == null)
+            return false;
+        
+        // 向上查找父对象，因为射线可能命中子对象（如 Text、Image 等）
+        Transform current = obj.transform;
+        int maxDepth = 10; // 限制查找深度，避免无限循环
+        int depth = 0;
+        
+        while (current != null && depth < maxDepth)
+        {
+            // 检查常见的可交互组件
+            if (current.GetComponent<Button>() != null)
+                return true;
+            
+            if (current.GetComponent<Toggle>() != null)
+                return true;
+            
+            if (current.GetComponent<InputField>() != null)
+                return true;
+            
+            if (current.GetComponent<Slider>() != null)
+                return true;
+            
+            if (current.GetComponent<Dropdown>() != null)
+                return true;
+            
+            // 检查是否实现了点击相关的接口
+            if (current.GetComponent<IPointerClickHandler>() != null)
+                return true;
+            
+            // 检查是否有其他可交互组件（通过 Selectable 基类）
+            if (current.GetComponent<Selectable>() != null)
+                return true;
+            
+            // 向上查找父对象
+            current = current.parent;
+            depth++;
+        }
+        
+        return false;
+    }
+    
+    /// <summary>
+    /// 获取可交互组件（向上查找）
+    /// </summary>
+    private GameObject GetInteractableComponent(GameObject obj)
+    {
+        if (obj == null)
+            return null;
+        
+        // 向上查找父对象，找到第一个可交互组件
+        Transform current = obj.transform;
+        int maxDepth = 3;
+        int depth = 0;
+        
+        while (current != null && depth < maxDepth)
+        {
+            // 检查常见的可交互组件
+            if (current.GetComponent<Button>() != null ||
+                current.GetComponent<Toggle>() != null ||
+                current.GetComponent<InputField>() != null ||
+                current.GetComponent<Slider>() != null ||
+                current.GetComponent<Dropdown>() != null ||
+                current.GetComponent<IPointerClickHandler>() != null ||
+                current.GetComponent<Selectable>() != null)
+            {
+                return current.gameObject;
+            }
+            
+            // 向上查找父对象
+            current = current.parent;
+            depth++;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
+    /// 计算 ScrollRect 的边界范围
+    /// </summary>
+    private Vector2[] CalculateScrollRectBounds(ScrollRect scrollRect)
+    {
+        if (scrollRect.content == null)
+        {
+            return new Vector2[] { Vector2.zero, Vector2.zero };
+        }
+        
+        RectTransform content = scrollRect.content;
+        RectTransform viewport = scrollRect.viewport != null ? scrollRect.viewport : scrollRect.GetComponent<RectTransform>();
+        
+        // 计算内容在 viewport 坐标系中的边界
+        Bounds contentBounds = RectTransformUtility.CalculateRelativeRectTransformBounds(viewport, content);
+        
+        // 计算视口大小
+        Vector2 viewportSize = viewport.rect.size;
+        
+        // 计算内容大小（考虑所有子对象）
+        Vector3 contentSize = contentBounds.size;
+        
+        // 计算可滚动范围
+        // 如果内容小于视口，则不需要滚动
+        float horizontalRange = Mathf.Max(0, contentSize.x - viewportSize.x);
+        float verticalRange = Mathf.Max(0, contentSize.y - viewportSize.y);
+        
+        // 计算边界位置（相对于 content 的原始位置）
+        // ScrollRect 的 content 初始位置通常是 (0, 0)
+        // 向下/向右滚动时，位置变为负值
+        Vector2 minPosition = new Vector2(
+            scrollRect.horizontal ? -horizontalRange : content.anchoredPosition.x,
+            scrollRect.vertical ? -verticalRange : content.anchoredPosition.y
+        );
+        
+        Vector2 maxPosition = new Vector2(
+            scrollRect.horizontal ? 0 : content.anchoredPosition.x,
+            scrollRect.vertical ? 0 : content.anchoredPosition.y
+        );
+        
+        return new Vector2[] { minPosition, maxPosition };
+    }
+    
+    /// <summary>
+    /// 应用边界限制和弹性效果
+    /// </summary>
+    private Vector2 ApplyScrollRectConstraints(ScrollRect scrollRect, Vector2 targetPosition)
+    {
+        if (scrollRect.content == null)
+        {
+            return targetPosition;
+        }
+        
+        Vector2[] bounds = CalculateScrollRectBounds(scrollRect);
+        Vector2 minBounds = bounds[0];
+        Vector2 maxBounds = bounds[1];
+        
+        Vector2 constrainedPosition = targetPosition;
+        
+        // 根据 MovementType 处理
+        switch (scrollRect.movementType)
+        {
+            case ScrollRect.MovementType.Unrestricted:
+                // 无限制，直接返回
+                break;
+                
+            case ScrollRect.MovementType.Clamped:
+                // 严格限制边界
+                if (scrollRect.horizontal)
+                {
+                    constrainedPosition.x = Mathf.Clamp(targetPosition.x, minBounds.x, maxBounds.x);
+                }
+                else
+                {
+                    constrainedPosition.x = 0; // 保持原始 x
+                }
+                
+                if (scrollRect.vertical)
+                {
+                    constrainedPosition.y = Mathf.Clamp(targetPosition.y, minBounds.y, maxBounds.y);
+                }
+                else
+                {
+                    constrainedPosition.y = 0; // 保持原始 y
+                }
+                break;
+                
+            case ScrollRect.MovementType.Elastic:
+                // 弹性效果：超出边界时应用弹性阻力
+                if (scrollRect.horizontal)
+                {
+                    if (targetPosition.x < minBounds.x)
+                    {
+                        float overshoot = minBounds.x - targetPosition.x;
+                        constrainedPosition.x = minBounds.x - overshoot * scrollRect.elasticity;
+                    }
+                    else if (targetPosition.x > maxBounds.x)
+                    {
+                        float overshoot = targetPosition.x - maxBounds.x;
+                        constrainedPosition.x = maxBounds.x + overshoot * scrollRect.elasticity;
+                    }
+                    else
+                    {
+                        constrainedPosition.x = targetPosition.x;
+                    }
+                }
+                else
+                {
+                    constrainedPosition.x = 0; // 保持原始 x
+                }
+                
+                if (scrollRect.vertical)
+                {
+                    if (targetPosition.y < minBounds.y)
+                    {
+                        float overshoot = minBounds.y - targetPosition.y;
+                        constrainedPosition.y = minBounds.y - overshoot * scrollRect.elasticity;
+                    }
+                    else if (targetPosition.y > maxBounds.y)
+                    {
+                        float overshoot = targetPosition.y - maxBounds.y;
+                        constrainedPosition.y = maxBounds.y + overshoot * scrollRect.elasticity;
+                    }
+                    else
+                    {
+                        constrainedPosition.y = targetPosition.y;
+                    }
+                }
+                else
+                {
+                    constrainedPosition.y = 0; // 保持原始 y
+                }
+                break;
+        }
+        
+        // 如果 horizontal 和 vertical 都禁用，则不允许滚动
+        if (!scrollRect.horizontal && !scrollRect.vertical)
+        {
+            constrainedPosition = scrollRect.content.anchoredPosition;
+        }
+        
+        // 应用方向限制（即使在其他模式下也要限制）
+        if (!scrollRect.horizontal)
+        {
+            constrainedPosition.x = scrollRect.content.anchoredPosition.x;
+        }
+        if (!scrollRect.vertical)
+        {
+            constrainedPosition.y = scrollRect.content.anchoredPosition.y;
+        }
+        
+        return constrainedPosition;
+    }
+    
+    /// <summary>
+    /// 更新速度历史记录
+    /// </summary>
+    private void UpdateVelocityHistory(Vector2 currentPosition, float currentTime)
+    {
+        if (lastContentPositionTime > 0 && currentScrollingRect != null)
+        {
+            float deltaTime = currentTime - lastContentPositionTime;
+            if (deltaTime > 0.001f) // 避免除零
+            {
+                Vector2 deltaPosition = currentPosition - lastContentPosition;
+                Vector2 velocity = deltaPosition / deltaTime;
+                
+                // 添加到历史记录
+                velocityHistory.Enqueue(velocity);
+                velocityTimeHistory.Enqueue(currentTime);
+                
+                // 限制历史记录数量
+                if (velocityHistory.Count > velocityHistorySize)
+                {
+                    velocityHistory.Dequeue();
+                    velocityTimeHistory.Dequeue();
+                }
+            }
+        }
+        
+        lastContentPosition = currentPosition;
+        lastContentPositionTime = currentTime;
+    }
+    
+    /// <summary>
+    /// 计算平均速度（用于惯性滚动）
+    /// </summary>
+    private Vector2 CalculateAverageVelocity()
+    {
+        if (velocityHistory.Count == 0)
+        {
+            return Vector2.zero;
+        }
+        
+        Vector2 totalVelocity = Vector2.zero;
+        foreach (var velocity in velocityHistory)
+        {
+            totalVelocity += velocity;
+        }
+        
+        return totalVelocity / velocityHistory.Count;
+    }
+    
+    /// <summary>
+    /// 更新惯性滚动
+    /// </summary>
+    private void UpdateInertiaScrolling()
+    {
+        if (currentScrollingRect == null || currentScrollingRect.content == null)
+        {
+            StopInertiaScrolling();
+            return;
+        }
+        
+        // 应用速度衰减
+        scrollVelocity *= (1f - velocityDecayRate);
+        
+        // 检查速度是否低于阈值
+        if (scrollVelocity.magnitude < minVelocityThreshold)
+        {
+            StopInertiaScrolling();
+            return;
+        }
+        
+        // 应用速度到位置
+        Vector2 currentPosition = currentScrollingRect.content.anchoredPosition;
+        Vector2 newPosition = currentPosition + scrollVelocity * Time.deltaTime;
+        
+        // 应用边界限制和弹性
+        newPosition = ApplyScrollRectConstraints(currentScrollingRect, newPosition);
+        
+        // 更新位置
+        currentScrollingRect.content.anchoredPosition = newPosition;
+        
+        // 如果到达边界，停止惯性滚动
+        if (currentScrollingRect.movementType == ScrollRect.MovementType.Clamped)
+        {
+            Vector2[] bounds = CalculateScrollRectBounds(currentScrollingRect);
+            bool atBoundary = false;
+            
+            if (currentScrollingRect.horizontal)
+            {
+                atBoundary = (newPosition.x <= bounds[0].x + 0.1f && scrollVelocity.x < 0) ||
+                            (newPosition.x >= bounds[1].x - 0.1f && scrollVelocity.x > 0);
+            }
+            if (currentScrollingRect.vertical)
+            {
+                atBoundary = atBoundary || 
+                            (newPosition.y <= bounds[0].y + 0.1f && scrollVelocity.y < 0) ||
+                            (newPosition.y >= bounds[1].y - 0.1f && scrollVelocity.y > 0);
+            }
+            
+            if (atBoundary)
+            {
+                StopInertiaScrolling();
+            }
+        }
+    }
+    
+    /// <summary>
+    /// 开始惯性滚动
+    /// </summary>
+    private void StartInertiaScrolling(ScrollRect scrollRect, Vector2 velocity)
+    {
+        currentScrollingRect = scrollRect;
+        scrollVelocity = velocity;
+        isInertiaScrolling = true;
+        
+        // 应用方向限制到速度
+        if (!scrollRect.horizontal)
+        {
+            scrollVelocity.x = 0;
+        }
+        if (!scrollRect.vertical)
+        {
+            scrollVelocity.y = 0;
+        }
+    }
+    
+    /// <summary>
+    /// 停止惯性滚动
+    /// </summary>
+    private void StopInertiaScrolling()
+    {
+        isInertiaScrolling = false;
+        scrollVelocity = Vector2.zero;
+        currentScrollingRect = null;
+        velocityHistory.Clear();
+        velocityTimeHistory.Clear();
+        lastContentPositionTime = 0f;
+    }
+    
+    #endregion
+    
     /// <summary>
     /// 修正版：处理滑动列表（ScrollRect）的拖拽逻辑（无 eventData.phase）
     /// </summary>
@@ -669,6 +1104,22 @@ public class AdSceneManager : MonoBehaviour
         // 按下阶段：pointerPress 不为空（表示有对象被按下），且未开始拖拽
         if (eventData.pointerPress != null && !eventData.dragging)
         {
+            // 停止惯性滚动（开始新的交互）
+            if (isInertiaScrolling)
+            {
+                StopInertiaScrolling();
+            }
+            
+            // 关键修复：如果点击的是可交互组件（如 Button），不拦截事件，让子对象先处理
+            // 只有在真正拖拽时（移动距离超过阈值）才处理滚动
+            if (IsInteractableComponent(hitObject))
+            {
+                // 可交互对象：不拦截，返回 false 让子对象处理点击
+                // 但需要保存 ScrollRect 引用，以便在移动阶段判断是否拖拽
+                //Debug.Log($"AdSceneManager：检测到可交互组件 {hitObject.name}，不拦截事件，让子对象先处理");
+                return false;
+            }
+            
             // 重置拖拽状态标志（使用手动滚动方案，不依赖ScrollRect的OnBeginDrag）
             scrollRectBeginDragCalled = false;
             scrollRectContentStartPos = Vector2.zero;
@@ -694,6 +1145,25 @@ public class AdSceneManager : MonoBehaviour
             // 因为pressEventCamera可能无法获取（ScreenSpaceOverlay模式或跨Canvas场景）
             // 方案：不调用ScrollRect的OnDrag，而是手动计算本地坐标差值并设置content位置
             
+            // 关键修复：如果按下的是可交互组件，需要检查是否真的在拖拽
+            // 如果移动距离很小，可能是误触，不处理滚动
+            if (eventData.pointerPress != null && IsInteractableComponent(eventData.pointerPress))
+            {
+                float dragDistance = Vector2.Distance(eventData.position, eventData.pressPosition);
+                // 如果移动距离小于阈值，可能是点击而不是拖拽，不处理滚动
+                if (dragDistance < dragThreshold)
+                {
+                    //Debug.Log($"AdSceneManager：可交互组件移动距离 {dragDistance:F2} < 阈值 {dragThreshold}，不处理滚动");
+                    return false;
+                }
+            }
+            
+            // 停止惯性滚动（开始新的拖拽）
+            if (isInertiaScrolling)
+            {
+                StopInertiaScrolling();
+            }
+            
             // 保存拖拽开始时的内容位置（只在第一次拖拽时保存）
             if (!scrollRectBeginDragCalled)
             {
@@ -701,6 +1171,20 @@ public class AdSceneManager : MonoBehaviour
                 scrollRectContentStartPos = scrollRect.content != null ? scrollRect.content.anchoredPosition : Vector2.zero;
                 scrollRectPressLocalPos = localPressPos; // 保存按下时的本地坐标
                 scrollRectBeginDragCalled = true;
+                
+                // 初始化速度历史记录
+                currentScrollingRect = scrollRect;
+                lastContentPosition = scrollRectContentStartPos;
+                lastContentPositionTime = Time.time;
+                velocityHistory.Clear();
+                velocityTimeHistory.Clear();
+                
+                // 调用 OnBeginDrag
+                IBeginDragHandler beginDragHandler = scrollRect as IBeginDragHandler;
+                if (beginDragHandler != null)
+                {
+                    beginDragHandler.OnBeginDrag(eventData);
+                }
                 
                 //Debug.Log($"AdSceneManager：ScrollRect 手动拖拽开始 - {scrollRect.gameObject.name} | " +
                 //          $"按下本地坐标：{localPressPos} | " +
@@ -710,15 +1194,39 @@ public class AdSceneManager : MonoBehaviour
             
             // 手动计算滚动位置：新位置 = 初始位置 + (当前本地坐标 - 按下本地坐标)
             Vector2 pointerDelta = localPos - scrollRectPressLocalPos;
+            
+            // 应用方向限制
+            if (!scrollRect.horizontal)
+            {
+                pointerDelta.x = 0;
+            }
+            if (!scrollRect.vertical)
+            {
+                pointerDelta.y = 0;
+            }
+            
             Vector2 newContentPos = scrollRectContentStartPos + pointerDelta;
+            
+            // 应用边界限制和弹性效果
+            newContentPos = ApplyScrollRectConstraints(scrollRect, newContentPos);
             
             // 记录拖拽前的内容位置
             Vector2 contentPosBefore = scrollRect.content != null ? scrollRect.content.anchoredPosition : Vector2.zero;
             
-            // 手动设置content位置（参考ScrollRect的SetContentAnchoredPosition逻辑）
+            // 手动设置content位置
             if (scrollRect.content != null)
             {
                 scrollRect.content.anchoredPosition = newContentPos;
+                
+                // 更新速度历史记录
+                UpdateVelocityHistory(newContentPos, Time.time);
+            }
+            
+            // 调用 OnDrag（让其他组件知道正在拖拽）
+            IDragHandler dragHandler = scrollRect as IDragHandler;
+            if (dragHandler != null)
+            {
+                dragHandler.OnDrag(eventData);
             }
             
             // 记录拖拽后的内容位置
@@ -739,6 +1247,33 @@ public class AdSceneManager : MonoBehaviour
         {
             //Debug.Log($"AdSceneManager：ScrollRect 抬起阶段 - 已调用BeginDrag：{scrollRectBeginDragCalled}");
             
+            // 关键修复：如果按下的是可交互组件且未拖拽，不处理滚动，让子对象处理点击
+            // 通过检查 currentPressedObject 来判断（在 SimulatePointerUp 中会设置）
+            if (currentPressedObject != null && IsInteractableComponent(currentPressedObject))
+            {
+                // 检查是否真的拖拽了（通过 scrollRectBeginDragCalled 判断）
+                if (!scrollRectBeginDragCalled)
+                {
+                    // 未拖拽，让子对象处理点击事件
+                    //Debug.Log($"AdSceneManager：可交互组件未拖拽，不处理滚动，让子对象处理点击");
+                    return false;
+                }
+            }
+            
+            // 如果正在拖拽，计算速度并启动惯性滚动
+            if (scrollRectBeginDragCalled && scrollRect.content != null)
+            {
+                // 计算平均速度
+                Vector2 averageVelocity = CalculateAverageVelocity();
+                
+                // 如果速度足够大，启动惯性滚动
+                if (averageVelocity.magnitude > minVelocityThreshold && scrollRect.inertia)
+                {
+                    StartInertiaScrolling(scrollRect, averageVelocity);
+                    //Debug.Log($"AdSceneManager：启动惯性滚动 - 速度：{averageVelocity} | 大小：{averageVelocity.magnitude:F2}");
+                }
+            }
+            
             // 触发 ScrollRect 抬起+结束拖拽逻辑
             IPointerUpHandler upHandler = scrollRect as IPointerUpHandler;
             IEndDragHandler endDragHandler = scrollRect as IEndDragHandler;
@@ -753,6 +1288,9 @@ public class AdSceneManager : MonoBehaviour
                 upHandler.OnPointerUp(eventData);
                 Debug.Log($"AdSceneManager：ScrollRect 抬起 - {scrollRect.gameObject.name}");
             }
+            
+            // 重置拖拽状态
+            scrollRectBeginDragCalled = false;
         }
         else
         {
@@ -840,6 +1378,9 @@ public class AdSceneManager : MonoBehaviour
         scrollRectBeginDragCalled = false; // 重置 ScrollRect 拖拽标志
         scrollRectContentStartPos = Vector2.zero; // 重置手动滚动状态
         scrollRectPressLocalPos = Vector2.zero; // 重置手动滚动状态
+        
+        // 注意：不在这里停止惯性滚动，因为惯性滚动应该在抬起时启动
+        // 如果用户点击其他地方，惯性滚动会在新的拖拽开始时停止
     }
     #endregion
 
